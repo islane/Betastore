@@ -1,0 +1,58 @@
+### #1 Print out the number of orders per customer
+
+SELECT count(*) as order_count, customer_id
+FROM orders
+GROUP BY customer_id
+ORDER BY order_count desc;
+
+
+### #2 Print out the top 5 customers (placed the most orders)
+
+select customer_id, sum(total) as total
+from(
+SELECT li.order_id, o.customer_id,
+sum(li.quantity * p.price) as total
+FROM orders o
+JOIN line_items li on li.order_id = o.id
+JOIN products p on li.product_id = p.id
+GROUP BY li.order_id, o.customer_id
+) t
+group by customer_id
+order by sum(total) desc
+limit 5
+
+
+### #3 Print out the total amount per order
+
+SELECT o.id, sum(li.quantity * p.price)
+FROM orders o
+JOIN line_items li on li.order_id = o.id
+JOIN products p on li.product_id = p.id
+GROUP BY o.id
+
+
+### #4 Print out the emails that have placed more than 6 orders
+
+-- SELECT DISTINCT
+--        c.email as email
+-- FROM customers c
+-- JOIN orders o on c.id = o.customer_id
+-- GROUP BY c.email
+-- HAVING count(*) >= 6
+
+SELECT c.email, count(*)
+FROM orders o
+JOIN customers c on o.customer_id = c.id
+GROUP BY c.email
+HAVING count(*) >= 6
+
+
+### #5 Delete the last 5 orders
+
+#use subquery: DELETE FROM...
+#                  (SELECT FROM... ORDER desc... LIMIT 5)
+
+
+### #6 Copy all the orders to a CSV file
+
+#use CSV command, export to tmp/
