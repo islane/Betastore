@@ -9,4 +9,12 @@ class Order < ActiveRecord::Base
   def self.by(customer)
     where(customer_id: customer.id)
   end
+
+  def calculate_total_amount
+    self.total_amount = 0
+        for line_item in line_items
+        self.total_amount += line_item.total_amount
+    save
+    end
+  end
 end
