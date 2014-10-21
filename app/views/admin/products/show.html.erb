@@ -1,0 +1,12 @@
+<h1><%= @product_info.name %></h1>
+<div style="width: 375px; height: 300px; margin: 0 auto;">
+  <div style="height: 300px; position: relative; overflow: hidden;">
+    <img src="<%=@product_info.image_url %>" style="width: 100%; margin: auto; position: absolute; top: -9999px; bottom: -9999px; left: -9999px; right: -9999px; -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px;">
+  </div>
+<div>
+  <p><b>Price:</b> $<%= number_to_currency @product_info.price %></p>
+  <p><b>Created:</b> <%= time_ago_in_words @product_info.created_at %> ago (<%= @product_info.created_at.strftime('%m/%d/%Y') %>)</p>
+
+
+</div>
+<br>
