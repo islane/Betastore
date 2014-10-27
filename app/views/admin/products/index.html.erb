@@ -1,6 +1,10 @@
 <h1>Products</h1>
 
 <div style="margin: 0 auto; text-align: center; width: 426px;">
+  <% if flash[:notice].present? %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
 <table>
   <tr>
     <th>ID</th>
@@ -17,4 +21,9 @@
     </tr>
   <% end %>
 </table>
+
+<br>
+
+<a href="<%= new_admin_product_path() %>"><b>Add New Product</b></a>
+
 </div>
