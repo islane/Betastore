@@ -1,0 +1,20 @@
+<h1>Edit <%= @product_info.name %></h1>
+
+<div style="width: 200px; height: auto; margin: 0 auto;">
+<%= form_for [:admin, @product_info] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <br>
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
+  <br>
+  <%= f.submit %>
+<% end %>
+<br>
+
+<%= button_to "Delete", admin_product_path(), :method => :delete %>
+
+</div>
