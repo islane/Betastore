@@ -38,6 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'newrelic_rpm'
+
 group :development do
   gem 'hirb'
   gem 'pry'
@@ -45,4 +47,9 @@ end
 
 group :development, :test do
   gem 'pry'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
 end
