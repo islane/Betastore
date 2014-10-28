@@ -31,7 +31,7 @@ class Admin::ProductsController < ApplicationController
   def destroy
     @id = params[:id]
     @product = Product.find(@id)
-    if @product.destroy(product_params)
+    if @product.destroy
       redirect_to admin_products_path, notice: "Product #{@product.id} was deleted"
     else
       render 'edit'
