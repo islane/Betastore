@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org/'
+ruby '2.1.2'
 
+gem 'rails-assets-bootstrap'
+
+gem 'puma'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -16,8 +21,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -40,9 +43,10 @@ gem 'spring',        group: :development
 
 gem 'newrelic_rpm'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'hirb'
-  gem 'pry'
 end
 
 group :development, :test do

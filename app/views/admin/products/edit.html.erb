@@ -1,20 +1,29 @@
-<h1>Edit <%= @product_info.name %></h1>
+<div class="col-md-3"></div>
+<div class="col-md-6">
 
-<div style="width: 200px; height: auto; margin: 0 auto;">
-<%= form_for [:admin, @product_info] do |f| %>
+  <ol class="breadcrumb">
+    <li><a href="<%= admin_products_path %>">Products</a></li>
+    <li><a href="<%=admin_product_path(@product_info) %>"><%= @product_info.name %></a></li>
+    <li class="active">Edit <%= @product_info.name %></li>
+  </ol>
+
+<h2>Edit <%= @product_info.name %></h2>
+
+<div>
+<%= form_for [:admin, @product_info], {html:{role: 'form', class: ''}} do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: 'form-control' %>
   <br>
   <%= f.label :price %>
-  <%= f.text_field :price %>
+  <%= f.text_field :price, class: 'form-control' %>
   <br>
   <%= f.label :image_url %>
-  <%= f.text_field :image_url %>
+  <%= f.text_field :image_url, class: 'form-control' %>
   <br>
-  <%= f.submit %>
+  <%= f.submit(nil, class: 'btn btn-success') %>
 <% end %>
-<br>
-
-<%= button_to "Delete", admin_product_path(@product_info), :method => :delete %>
-
 </div>
+<br>
+<%= button_to "Delete", admin_product_path(@product_info), :method => :delete, class: 'btn btn-danger' %>
+
+<div class="col-md-3"></div>
