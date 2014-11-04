@@ -30,6 +30,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    bugsnag (2.5.0)
+      httparty (>= 0.6, < 1.0)
+      multi_json (~> 1.0)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -49,6 +52,9 @@ GEM
     execjs (2.2.1)
     hike (1.2.3)
     hirb (0.7.2)
+    httparty (0.13.2)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     jbuilder (2.2.0)
       activesupport (>= 3.0.0, < 5)
@@ -66,6 +72,7 @@ GEM
     mini_portile (0.6.0)
     minitest (5.4.2)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     newrelic_rpm (3.9.6.257)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
@@ -140,6 +147,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bugsnag
   capybara
   coffee-rails (~> 4.0.0)
   hirb

@@ -42,6 +42,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'newrelic_rpm'
+gem 'bugsnag'
 
 gem 'rails_12factor', group: :production
 
