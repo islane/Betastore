@@ -8,6 +8,8 @@ Betastore::Application.routes.draw do
     # get '/products/:id' => 'products#show', as: 'product'
     # get '/products' => 'products#index'
     # post '/products' => 'products#create'
+    get  '/login' => 'logins#new', as: 'logins'
+    post '/login' => 'logins#create'
   end
 
   root :to => 'subscriptions#new'
