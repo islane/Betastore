@@ -41,6 +41,20 @@
                 </ul>
               </li> -->
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+	            <li>
+	            	<a href="<%= cart_path(session[:cart_id]) %>">
+	            		<span class="badge badge-success">
+			              Cart:
+			              <% if current_cart %>
+			                <%= current_cart.item_count %>
+			              <% else %>
+			                0
+			              <% end %>
+			            </span>
+			        </a>
+			    </li>
+            </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
