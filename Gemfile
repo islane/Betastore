@@ -48,6 +48,8 @@ gem 'bugsnag'
 
 gem 'rails_12factor', group: :production
 
+gem 'faker'
+
 group :development do
   gem 'hirb'
 end
