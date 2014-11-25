@@ -12,10 +12,15 @@ class SubscriptionsController < ApplicationController
     if @subscription.save
       redirect_to new_subscription_path,
         notice: 'Subscription was successfully created.'
+
+        SubMailer.welcome(@subscription).deliver
+        
     else
       render action: 'new'
     end
   end
+
+
 
   private
   def subscription_params
