@@ -48,6 +48,20 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
+  def vote_up
+    product = Product.find(params[:id])
+    product.increment(:votes)
+    product.save
+    render body: product.votes
+  end
+
+  def vote_down
+    product = Product.find(params[:id])
+    product.decrement(:votes)
+    product.save
+    render body: product.votes
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :price, :image_url)
