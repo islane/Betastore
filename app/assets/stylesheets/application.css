@@ -11,5 +11,8 @@
  * file per style scope.
  *
  *= require bootstrap
+ *= require 'bootstrap.css.map'
+ *= require 'tooltipster'
+ *= require 'tooltipster-light'
  *= require_self
  */
