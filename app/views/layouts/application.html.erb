@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>
 
   </head>
   <body>
@@ -20,14 +20,34 @@
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <a class="navbar-brand" href="<%= root_path %>">
-              <%= image_tag "Betastore.png", {height: 22} %>
+	            <!-- <%= image_tag "Betastore.png", {height: 22} %> -->
+	            <b> &#946;etastore </b>
             </a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="<%= admin_products_path %>">Products</a></li>
+              <li><a href="<%= products_path %>">Products</a></li>
+              <li><a href="<%= about_path %>">About</a></li>
+              <li><a href="<%= contact_path %>">Contact</a></li>
+	        <% if logged_in? %>
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	              Admin <b class="caret"></b>
+	            </a>
+	            <ul class="dropdown-menu">
+	            		<li><%= link_to "Products Menu", admin_products_path %></li>      	    
+	            		<li><%= link_to "Orders", admin_orders_path %></li>      	    
+	            		<li><%= link_to "Settings", admin_settings_path(:email => @current_user.email) %></li>      	    
+	              <li class="divider"></li>
+	              <li>
+	                <%= link_to "Log out", admin_logout_path, method: "delete" %>
+	              </li>
+	            </ul>
+	          </li>
+	        <% else %>
+	        <% end %>
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -58,20 +78,32 @@
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
-
-  	  <%= yield %>
-
-      <br>
-
-      <% if flash[:notice].present? %>
-        <div class="notice"><%= flash[:notice] %></div>
-      <% end %>
-
-
-      <% if flash[:danger].present? %>
-        <div class="notice"><%= flash[:danger] %></div>
-      <% end %>
-
+      
+      <% flash.each do |type, message| %>
+				<div class="alert <%= alert_class_for(type) %> fade in">
+					<button class="close" data-dismiss="alert">×</button>
+					<%= message %>
+				</div>
+			<% end %> 
+      
   	</div>
+      
+  	<%= yield %>
+
+    <br>
+
+ 
+
+  	<footer class="footer">
+			<ul class="nav navbar-nav">
+				<li class="text-muted footertxt">&copy; Betastore <%= Time.now.year %></li>
+				<% if logged_in? %>
+					<li><%= link_to "Admin Products Menu", admin_products_path %></li>      	    
+					<li><%= link_to "Log out", admin_logout_path, method: "delete" %></li>
+				<% else %>
+					<li><%= link_to "Admin?", admin_logins_path %></li>
+				<% end %>
+			</ul>
+    </footer>
   </body>
 </html>
