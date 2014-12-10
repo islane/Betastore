@@ -9,4 +9,9 @@ class Cart < ActiveRecord::Base
   def subtotal
   	cart_products.map(&:price).sum
   end
+  
+  def total
+  	#TODO assess sales tax
+  	subtotal
+  end
 end
