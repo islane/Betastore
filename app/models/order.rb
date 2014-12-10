@@ -1,20 +1,15 @@
 class Order < ActiveRecord::Base
-  belongs_to :customer
   has_many :line_items
-  has_many :products, :through => :line_items
-  def self.recent
-    where("placed_at > ?", 7.days.ago)
+  
+  after_commit :queue_processing, on: :create
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  attr_accessor :stripe_token
+  attr_accessor :cart_total
+  
+  def queue_processing
+  	OrderWorker.perform_async(id, stripe_token, cart_total)
   end
-
-  def self.by(customer)
-    where(customer_id: customer.id)
-  end
-
-  def calculate_total_amount
-    self.total_amount = 0
-        for line_item in line_items
-        self.total_amount += line_item.total_amount
-    save
-    end
-  end
+  
 end
