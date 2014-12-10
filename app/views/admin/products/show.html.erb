@@ -1,33 +1,36 @@
 <div class="col-md-3"></div>
 <div class="col-md-6">
 
-  <ol class="breadcrumb">
-    <li><a href="<%= admin_products_path %>">Products</a></li>
-    <li class="active"><%= @product_info.name %></li>
-  </ol>
+	<ol class="breadcrumb">
+		<li><a href="<%= admin_products_path %>">Products</a></li>
+		<li class="active"><%= @product_info.name %></li>
+	</ol>
 
-<h2><%= @product_info.name %></h2>
+	<div style="padding-top:10px;">
+		<h2><%= @product_info.name %></h2>
+	</div>
 
+	<div class="prodshow-container">
+		<img class="prodshow-img" src="<%=@product_info.image_url %>">
+	</div>
+	
+	<div style="padding-top:10px;">
+		<p><b>Price:</b> <%= number_to_currency @product_info.price %></p>
+		<p><b>Created:</b> <%= time_ago_in_words @product_info.created_at %> ago (<%= @product_info.created_at.strftime('%m/%d/%Y') %>)</p>
+	</div>
 
-  <div style="height: 300px; position: relative; overflow: hidden;">
-    <img src="<%=@product_info.image_url %>" style="width: 100%; margin: auto; position: absolute; top: -9999px; bottom: -9999px; left: -9999px; right: -9999px; -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px;">
-  </div>
-
-  <div>
-    <p><b>Price:</b> <%= number_to_currency @product_info.price %></p>
-    <p><b>Created:</b> <%= time_ago_in_words @product_info.created_at %> ago (<%= @product_info.created_at.strftime('%m/%d/%Y') %>)</p>
-  </div>
-
-    <div data-vote-url="<%= admin_product_path(@product_info) %>">
-      <b>Rating: </b><span class="votes"><%= @product_info.votes %></span>
-      <span class="vote-up"><button>+1</button></span>
-      <span class="vote-down"><button>-1</button></span>
-    </div>
-
-
-  <div class="row"><a href="<%= edit_admin_product_path() %>" class="btn btn-primary"><b>Edit</b></a>
-    <a class="btn btn-danger" data-confirm="Are you sure?" data-method="delete" href="<%= admin_product_path(@product_info) %>" rel="nofollow">Delete</a>
-  </div>
+	<div data-vote-url="<%= admin_product_path(@product_info) %>">
+	  <b>Rating: </b><span class="votes"><%= @product_info.votes %></span>
+	  <span class="vote-up"><button>+1</button></span>
+	  <span class="vote-down"><button>-1</button></span>
+	</div>
+  
+	<br>
+  
+	<div>
+		<a href="<%= edit_admin_product_path() %>" class="btn btn-primary"><b>Edit</b></a>
+		<a class="btn btn-danger" data-confirm="Are you sure?" data-method="delete" href="<%= admin_product_path(@product_info) %>" rel="nofollow">Delete</a>
+	</div>
 
 </div>
 <div class="col-md-3"></div>
