@@ -1,0 +1,96 @@
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+  
+  Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
+  
+  function stripeResponseHandler(status, response) {
+	  var $form = $('#new_order');
+	
+	  if (response.error) {
+	    // Show the errors on the form
+	    $form.find('.payment-errors').text(response.error.message);
+	    $form.find('button').prop('disabled', false);
+	  } else {
+	    // response contains id and card, which contains additional card details
+	    var token = response.id;
+	    // Insert the token into the form so it gets submitted to the server
+	    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+	    // and submit
+	    $form.get(0).submit();
+	  }
+	};
+
+  $(function(){
+	    $('#new_order').submit(function(event) {
+	    var $form = $(this);
+	
+	    // Disable the submit button to prevent repeated clicks
+	    $form.find('[type=submit]').prop('disabled', true);
+	
+	    Stripe.card.createToken($form, stripeResponseHandler);
+	
+	    // Prevent the form from submitting with the default action
+	    return false;
+	  });
+  })
+</script>
+
+<div class="col-md-3"></div>
+<div class="col-md-6">
+
+	<h2>Checkout</h2>
+	
+	<table class="table">
+	  <tr>
+	    <th>Name</th>
+	    <th>Price</th>
+	    <th>Quantity</th>
+	    <th></th>
+	  </tr>
+	  	<% for cart_product in current_cart.cart_products %>
+
+	    <tr>
+	      <td><%= cart_product.product.name %></td>
+	      <td><%= cart_product.product.price %></td>
+	      <td><%= cart_product.quantity %></td>
+	    </tr>
+	  <% end %>
+	  </table>
+	 <div><b>Total: </b><%= number_to_currency current_cart.subtotal %></div>
+	 
+	<%= form_for @order do |f| %>
+	  <div class="form-group">
+	  	<%= f.label :email %>
+	  	<%= f.text_field :email, class: 'form-control' %>
+	  </div>
+	  
+	  <div class="form-group">
+		  <label for="card-number">Card Number</label>
+		  <input id="card-number" class='form-control' data-stripe="number">
+	  </div>
+	  
+	  <div class="form-group">
+		  <label for="cvv">CVV</label>
+		  <input id="cvv" class='form-control' data-stripe="cvc">
+	  </div>
+	  
+	  <div class="form-group">
+		  <label for="card-exp-month">Exp. Month</label>
+		  <input id="card-exp-month" class='form-control' data-stripe="exp-month">
+	  </div>
+	  
+	  <div class="form-group">
+		  <label for="card-exp-year">Exp. Year</label>
+		  <input id="card-exp-year" class='form-control' data-stripe="exp-year">
+	  </div>
+	
+	  <%= f.submit "Checkout" %>
+	<% end %>
+
+
+</div>
+
+<div class="col-md-3"></div>
+
+
+
