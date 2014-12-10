@@ -26,9 +26,6 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    # cart = Cart.find_or_create_by(id: session[:cart_id])
-    # session[:cart_id] = cart.id
-
     if session[:cart_id].blank?
       cart = Cart.create
       session[:cart_id] = cart.id
@@ -55,7 +52,7 @@ class ProductsController < ApplicationController
 
     if cart_product.present?
       cart_product.destroy!
-      redirect_to cart_path
+      redirect_to cart_path, alert: 'Item removed from cart'
     else
       raise ActiveRecord::RecordNotFound
     end
