@@ -5,3 +5,7 @@ development:
 test:
   adapter: postgresql
   database: betastore_test
+
+production:
+  adapter: postgresql
+  database: betastore_development
