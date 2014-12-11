@@ -1,6 +1,5 @@
 # User.create!(email: 'islane@rocketmail.com', password: 'a1234')
 
-if Rails.env.development?
 
   35.times do
   
@@ -17,7 +16,7 @@ if Rails.env.development?
     )
   end
 
-end
+
 
 
 
