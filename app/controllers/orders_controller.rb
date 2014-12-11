@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:email).merge(cart_id: current_cart.id, stripe_token: params[:stripeToken], cart_total: current_cart.total)
+    params.require(:order).permit(:email).merge(cart_id: current_cart.id, stripe_token: params[:stripeToken], cart_total: current_cart.total.to_f)
   end
 
 end
