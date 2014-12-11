@@ -1,5 +1,5 @@
-<div class="col-md-2 col-sm-2"></div>
-<div class="col-md-8 col-sm-8 container">
+<div class="col-md-1 col-sm-1"></div>
+<div class="col-md-10 col-sm-10 container">
   
 <h2>Products</h2>
 
@@ -51,20 +51,18 @@
 
 <% for product in @products %>
   <div class="item img-overlay" style="margin-bottom: 10px;">
-    	<div class="project-overlay prod-img">
+    	<div class="project-overlay">
     		<div class="" style="background-color: rgba(240,240,240,0.9); margin: 5px; padding: 5px;">
-        	<%= link_to product.name, product_path(product) %><br>
-        	<%= number_to_currency product.price %>
+        	<b><%= link_to product.name, product_path(product) %></b><br>
+        	<%= number_to_currency product.price %>        	<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </div>
-        
-        <div>
+        <div style="padding-left: 4px;">
 	        <%= button_to "Add to cart", add_to_cart_product_path(product), method: :post, class: 'btn btn-primary' %>
         </div>
      	</div>
-    	<a class="media" href="<%= product_path(product) %>">
-      	<img src="<%= product.image_url %>" class="img-responsive" alt="<%= product.name %>">
-      </a>
 
+    	<img src="<%= product.image_url %>" class="img-responsive" alt="<%= product.name %>">
+      	
   </div>
 
 <% end %>
@@ -76,7 +74,7 @@
 
 
 </div>
-<div class="col-md-2 col-sm-2"></div>
+<div class="col-md-1 col-sm-1"></div>
 
 <script>
 	// initialize Isotope
