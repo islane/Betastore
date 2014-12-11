@@ -1,6 +1,10 @@
+require 'sidekiq/web'
+
 Betastore::Application.routes.draw do
   resources :subscriptions
   resources :orders
+
+  mount Sidekiq::Web => '/sidekiq'
 
   root :to => 'subscriptions#new'
   get '/products' => 'products#index'
