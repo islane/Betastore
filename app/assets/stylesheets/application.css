@@ -56,12 +56,3 @@
     padding: 10px;
 }
 
-.prod-img {
-    opacity: 0.5;
-    filter: alpha(opacity=40);
-}
-
-.prod-img:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-}
