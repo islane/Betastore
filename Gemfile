@@ -32,6 +32,8 @@ gem 'bugsnag'
 gem 'rails_12factor', group: :production
 gem 'faker'
 
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 group :development do
   gem 'hirb'
   gem 'spring' # Spring speeds up development by keeping your application running in the background. https://github.com/rails/spring
