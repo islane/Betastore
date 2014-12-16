@@ -1,25 +1,29 @@
 <div class="col-md-2 col-sm-2"></div>
 <div class="col-md-8 col-sm-8">
-<div class="well well-lg">
-	<h2><b>Join Our Mailing List</b></h2>
+
+	<div class="vert-center">
+		<div class="well well-lg" style="opacity: 0.98;">
+			<h2><b>Join Our Mailing List</b></h2>
+			
+			<%= form_for(@subscription) do |f| %>
+			  <div class="field">
+			    <%= f.label :email, "Receive news, discounts, and more:" %>
+			        <div class="showtooltip input-group" title="Stay connected with Betastore!">
+			        	<%= f.text_field :email, class: 'form-control', placeholder: "Enter your email to get started..." %>
+			              <span class="input-group-btn">
+			                <%= f.submit('Sign Up', class: 'btn btn-default', style: 'height: 42px;') %>
+			              </span>
+			        </div>
+			  </div>
+			<% end %>
+			
+			<hr>
+			
+			<h4><a href="<%= products_path %>">Continue to the Store ></a></h4>
+		</div>
+	</div>
 	
-	<%= form_for(@subscription) do |f| %>
-	  <div class="field">
-	    <%= f.label :email, "Receive news, discounts, and more:" %>
-	        <div class="showtooltip input-group" title="Stay connected with Betastore!">
-	        	<%= f.text_field :email, class: 'form-control', placeholder: "Enter your email to get started..." %>
-	              <span class="input-group-btn">
-	                <%= f.submit('Sign Up', class: 'btn btn-default', style: 'height: 42px;') %>
-	              </span>
-	        </div>
-	  </div>
-	<% end %>
-	
-	<hr>
-	
-	<h4><a href="<%= products_path %>">Continue to the Store ></a></h4>
+<div class="col-md-2 col-sm-2"></div>
 </div>
-</div>
-<div class="col-md-2 col-sm-8"></div>
 
 
