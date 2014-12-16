@@ -1,14 +1,38 @@
-<h1>Order Placed</h1>
-<h3>Your order is #<%= @order.id %></h3>
+<div class="col-md-3"></div>
+<div class="col-md-6">
 
-<h5>Thanks for shopping.</h5>
+	<h1>Order Placed<br>
+	<small>Your order is #<%= @order.id %>.</small></h1>
+	
+		<div class="well well-lg">
+			<% @totalprice = 0 %>
+		  <% @order.line_items.each do |line_item| %>
 
-<table>
-  <% @order.line_items.each do |line_item| %>
-    <tr>
-      <td><%= line_item.name %></td>
-      <td><%= line_item.quantity %></td>
-      <td><%= line_item.price %></td>
-    </tr>
-  <% end %>
-</table>
+					<div class="row">
+						<div class="col-xs-4">
+							<h5 class="product-name"><strong><%= line_item.name %></strong></h5>
+						</div>
+						<div class="col-xs-8">
+							<h5><strong>$<%= line_item.price %> <span class="text-muted">x</span> <%= line_item.quantity %></strong></h5>
+						</div>
+					</div>
+				<% @totalprice += line_item.price %>
+				<hr>
+			<% end %>
+	
+		<h4>Total: $<%= @totalprice %></h4>
+	
+	</div>
+	<div class="col-md-7">
+		<h4><em>Thanks for shopping with us.</em></h4>
+	</div>
+	<div class="col-md-5">
+		<a href="<%= products_path %>">
+			<button type="button" class="btn btn-primary btn-sm btn-block">
+				<span class="glyphicon glyphicon-share-alt"></span> Return to the store
+			</button>
+		</a>
+	</div>
+
+</div>
+<div class="col-md-3"></div>
