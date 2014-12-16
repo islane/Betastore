@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 		    session[:cart_id] = nil
 		
 		    redirect_to order,
-		    notice: "Order Created"
+		    success: "Order Placed"
 		else
 			redirect_to new_order_path,
 			notice: 'Please enter a valid email address to proceed with checkout.'
