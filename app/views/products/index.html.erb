@@ -1,88 +1,76 @@
-<div class="col-md-1 col-sm-1"></div>
-<div class="col-md-10 col-sm-10 container">
-  
-<h2>Products</h2>
+<div class="container">
+	<h2>Products</h2>
 
-<!--
-<table class="table">
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th></th>
-  </tr>
-  <% for product in @products %>
-    <tr>
-      <td><%= product.id %></td>
-      <td><%= link_to product.name, product_path(product) %></td>
-      <td><%= product.price %></td>
-      <td><%= button_to "Add to cart", add_to_cart_product_path(product), method: :post, class: 'btn btn-default' %></td>
-    </tr>
-  <% end %>
-</table>
-
-<br>
--->
-
-<!-- test area -->
-<!--
-<% for product in @products %>
-  <div class="media clearfix">
-    <a class="media-left col-sm-6" href="<%= product_path(product) %>">
-      <img src="<%= product.image_url %>" class="img-responsive" alt="<%= product.name %>">
-    </a>
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= link_to product.name, product_path(product) %><br>
-        <%= number_to_currency product.price %>
-      </h4>
-
-      <div>
-        <%= button_to "Add to cart", add_to_cart_product_path(product), method: :post, class: 'btn btn-default' %>
-      </div>
-    </div>
-  </div>
-  <hr>
-<% end %>
--->
-
-
-<div class="js-isotope isobody" data-isotope-options='{ "itemSelector": ".item", "masonry": { "columnWidth": 150, "gutter": 10 } }'>
-
-<% for product in @products %>
-  <div class="item img-overlay" style="margin-bottom: 10px;">
-    	<div class="project-overlay">
-    		<div class="" style="background-color: rgba(240,240,240,0.9); margin: 5px; padding: 5px;">
-        	<b><%= link_to product.name, product_path(product) %></b><br>
-        	<%= number_to_currency product.price %>        	<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-        </div>
-        <div style="padding-left: 4px;">
-	        <%= button_to "Add to cart", add_to_cart_product_path(product), method: :post, class: 'btn btn-primary' %>
-        </div>
-     	</div>
-
-    	<img src="<%= product.image_url %>" class="img-responsive" alt="<%= product.name %>">
-      	
-  </div>
-
-<% end %>
+	<div class="well">
+	<div id="sorts" class="button-group">
+		<p style="display: inline;">Sort by: </p>
+	  <button class="button sort is-checked btn btn-default" data-sort-value="name">name</button>
+	  <button class="button sort btn btn-default" data-sort-value="rating">rating</button>
+	  <button class="button sort btn btn-default" data-sort-value="price">price</button>
+	</div>
+	</div>
+	<div class="isobody jumbotron">
+		
+		<% for product in @products %>
+		  <div class="item img-overlay" style="margin-bottom: 10px;">
+		    	<div class="project-overlay">
+		    		<div style="background-color: rgba(240,240,240,0.9); margin: 5px; padding: 5px;">
+		        	<b><span class="name"><%= link_to product.name, product_path(product) %></span></b><br>
+		        	<span class="price"><%= number_to_currency product.price %></span><br>
+		        	<span class="glyphicon glyphicon-star"></span><span class="rating"> <%= product.votes %></span>
+		        	<div class="showtooltip input-group pull-right" title="Add to cart">
+		        		<a class="glyphicon glyphicon-plus-sign" data-method="post" href="<%= add_to_cart_product_path(product) %>"></a>
+		        	</div>
+		        </div>
+		     	</div>
+		
+		    	<img src="<%= product.image_url %>" class="img-responsive" alt="<%= product.name %>">
+		      	
+		  </div>
+		
+		 <% end %>
+	</div>
 
 </div>
-
-
-
-
-
-</div>
-<div class="col-md-1 col-sm-1"></div>
 
 <script>
-	// initialize Isotope
-	var $container = $('.isobody').isotope({
-	  // options
-	});
-	// layout Isotope again after all images have loaded
+$( function() {
+  // init Isotope
+  var $container = $('.isobody').isotope({
+    itemSelector: '.item',
+    masonry: {
+      columnWidth: 150,
+      gutter: 10
+    },    
+    getSortData: {
+      name: '.name',
+      rating: '.rating parseInt',
+      price: '.price',
+    },
+    sortAscending: {
+    	name: true,
+    	rating: false,
+    	price: true,
+  }
+  });
+
+  // bind sort button click
+  $('#sorts').on( 'click', 'button', function() {
+    var sortValue = $(this).attr('data-sort-value');
+    $container.isotope({ sortBy: sortValue });
+  });
+
+  // change is-checked class on buttons
+  $('.button-group').each( function( i, buttonGroup ) {
+    var $buttonGroup = $( buttonGroup );
+    $buttonGroup.on( 'click', 'button', function() {
+      $buttonGroup.find('.is-checked').removeClass('is-checked');
+      $( this ).addClass('is-checked');
+    });
+  });
+  // layout Isotope again after all images have loaded
 	$container.imagesLoaded( function() {
 	  $container.isotope('layout');
 	});
+});
 </script>
