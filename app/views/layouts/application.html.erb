@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Betastore</title>
-
+    <%= favicon_link_tag 'betastore.ico' %>
+    
     <!-- Bootstrap -->
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "storeback" %>
 
   </head>
   <body>
@@ -19,14 +21,20 @@
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <a class="navbar-brand" href="<%= root_path %>">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				      <a class="navbar-brand" href="<%= root_path %>">
 	            <!-- <%= image_tag "Betastore.png", {height: 22} %> -->
 	            <b> &#946;etastore </b>
             </a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li><a href="<%= products_path %>">Products</a></li>
               <li><a href="<%= about_path %>">About</a></li>
@@ -48,18 +56,7 @@
 	          </li>
 	        <% else %>
 	        <% end %>
-              <!-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li> -->
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
 	            <li>
@@ -91,8 +88,6 @@
   	<%= yield %>
 
     <br>
-
- 
 
   	<footer class="footer">
 			<ul class="nav navbar-nav">
