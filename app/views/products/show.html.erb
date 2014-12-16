@@ -13,21 +13,20 @@
     <img src="<%=@product_info.image_url %>" style="width: 100%; margin: auto; position: absolute; top: -9999px; bottom: -9999px; left: -9999px; right: -9999px; -webkit-border-radius: 7px; -moz-border-radius: 7px; border-radius: 7px;">
   </div>
 
-  <div>
-    <p><b>Price:</b> <%= number_to_currency @product_info.price %></p>
-    <p><b>Created:</b> <%= time_ago_in_words @product_info.created_at %> ago (<%= @product_info.created_at.strftime('%m/%d/%Y') %>)</p>
+  <div class="well">
+		<div>
+			<p><b>Price:</b> <%= number_to_currency @product_info.price %><br>
+			<b>Created:</b> <%= time_ago_in_words @product_info.created_at %> ago (<%= @product_info.created_at.strftime('%m/%d/%Y') %>)</p>
+		</div>
+	  <hr>
+	  <div data-vote-url="<%= product_path(@product_info) %>" class="pull-right">
+		  <b>Rating: </b><span class="votes"><%= @product_info.votes %></span>
+		  <span class="vote-up"><button>+1</button></span>
+		  <span class="vote-down"><button>-1</button></span>
+		</div>
+	  <%= button_to "Add to cart", add_to_cart_product_path(@product_info), method: :post, class: 'btn btn-primary' %>
+		
   </div>
-
-    <div data-vote-url="<%= product_path(@product_info) %>">
-      <b>Rating: </b><span class="votes"><%= @product_info.votes %></span>
-      <span class="vote-up"><button>+1</button></span>
-      <span class="vote-down"><button>-1</button></span>
-    </div>
-    
-   <br>
-
-  <%= button_to "Add to cart", add_to_cart_product_path(@product_info), method: :post, class: 'btn btn-default' %>
-
 </div>
 <div class="col-md-3"></div>
 
