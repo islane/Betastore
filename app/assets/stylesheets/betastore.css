@@ -19,6 +19,11 @@ body {
 	background-color: #f2f2f2;	
 }
 
+.footertxt {
+	padding: 15px 15px 15px 50px;
+}
+
+
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
@@ -51,6 +56,41 @@ p {
 .centered {
   text-align: center;
 }
+
+/*  Images */
+.prodshow-container {
+	height: 300px; 
+	position: relative; 
+	overflow: hidden;
+	background-color: rgb(245,245,245);
+}
+
+.prodshow-img {
+	width: 100%;
+	margin: auto;
+	position: absolute;
+	top: -9999px;
+	bottom: -9999px;
+	left: -9999px;
+	right: -9999px; 
+	-webkit-border-radius: 7px; 
+	-moz-border-radius: 7px; 
+	border-radius: 7px;
+}
+
+.img-overlay {
+    position: relative;
+    max-width: 100%;
+}
+
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
 
 /* Links */
 a {
@@ -102,8 +142,18 @@ a:after {
 	color: white;
 }
 
-/* Helpers */
+.navbar-toggle .icon-bar + .icon-bar, .navbar-default .navbar-toggle .icon-bar {
+background-color: #fff;
+}
 
+/* Isotope Buttons */
+.button.sort:active,
+.button.sort.is-checked {
+  background-color: #3499dc;
+  color: white;
+}
+
+/* Helpers */
 .mt {
 	margin-top: 40px;
 	margin-bottom: 40px;
@@ -120,6 +170,16 @@ i {
 	color: #3498db; 
 }
 
+.vert-center {
+	min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.col-centered{
+float: none;
+margin: 0 auto;
+}
 
 /* HeaderWrap */
 #headerwrap {
