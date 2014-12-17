@@ -1,9 +1,11 @@
 == Betastore
 
-On Heroku: <a href="http://goo.gl/MvUVZT">link</a>
+On Heroku: http://goo.gl/MvUVZT
 
 A rails store application featuring an admin back-end, isotope.js filtering and layout, and order processing handled through Sidekiq.
 
-Ruby 2.1.2
+#### Built/Running On:
 Rails 4.1.6
+Sidekiq 3.3.0
 Puma 2.9.2
+Bootstrap 3.3.0
