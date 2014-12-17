@@ -80,4 +80,14 @@ Rails.application.configure do
   # host: "serene-thicket-5859.herokuapp.com"
   }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :user_name => '261981e7a7ad57ac7',
+  :password => 'e251dc9288c2f6',
+  :address => 'mailtrap.io',
+  :domain => 'mailtrap.io',
+  :port => '2525',
+  :authentication => :cram_md5
+  }
+
 end
