@@ -6,8 +6,8 @@ A rails store application featuring an admin back-end, isotope.js filtering and 
 
 * * *
 
-**Built/Running On:**
-Rails 4.1.6
-Sidekiq 3.3.0
-Puma 2.9.2
+**Built/Running On:** 
+Rails 4.1.6, 
+Sidekiq 3.3.0, 
+Puma 2.9.2, 
 Bootstrap 3.3.0
