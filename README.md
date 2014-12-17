@@ -1,4 +1,4 @@
-== Betastore
+# Betastore
 
 On Heroku: http://goo.gl/MvUVZT
 
